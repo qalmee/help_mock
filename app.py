@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, request
 import jinja2
 import os
+import questions
+import json 
+import answers
 
 app = Flask(__name__)
 
@@ -16,6 +19,13 @@ def chance():
 def post():
 	if request.method == 'POST':
 		return render_template('post.html')
+	return render_template('get.html')
+
+@app.route('/get_help', methods=['POST'])
+def get_help():
+	json = request.get_json()
+	print (json["jaja"])
+	
 	return render_template('get.html')
 
 if __name__ == '__main__':
