@@ -45,6 +45,7 @@ def get_help():
 def init():
 	global pos
 	pos = -1
+	return ""
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
