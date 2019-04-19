@@ -4,6 +4,7 @@ import os
 import questions
 import json 
 import answers
+from movesfinder import MovesFinder
 
 app = Flask(__name__)
 
@@ -24,9 +25,15 @@ def post():
 @app.route('/get_help', methods=['POST'])
 def get_help():
 	json = request.get_json()
-	print (json["jaja"])
-	
-	return render_template('get.html')
+	movesfinder = MovesFinder()
+	match = questions.find_best_match(json["question"])
+	possible_moves = []
+	if match[0] == 0:
+		possible_moves = movesfinder.get_list_moves(json["board"])
+	elif match[0] == 1:
+		possible_moves = movesfinder.how_best_move(json["board"])
+	answer = ""	
+	return [answer, possible_moves]
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))

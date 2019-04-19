@@ -25,8 +25,7 @@ def find_best_match(question):
         if ret[1] > ans[1]:
             ans = ret
             indx = i
-    ans.insert(0, indx)           
-    return ans
+    return [indx, ans[1]]
 
 
 
