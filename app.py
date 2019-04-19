@@ -38,7 +38,7 @@ def get_help():
 	global json_var
 	global keys_arr
 	pos = pos + 1
-	return str(json_var[keys_arr[pos]]).encode("cp1251")
+	return str(json_var[keys_arr[pos]]).encode("utf-8")
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
