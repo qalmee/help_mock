@@ -55,6 +55,7 @@ def get_help_test():
 		possible_moves = movesfinder.how_best_move(json["board"])
 	answer = "haha"	
 	print(possible_moves)
+	#json_t = json.
 	return ("123", "234")
 
 if __name__ == '__main__':
