@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, request, Response
 import jinja2
 import os
-import questions
 import json 
 import answers
 from movesfinder import MovesFinder
