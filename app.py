@@ -41,6 +41,11 @@ def get_help():
 	pos = pos % 7
 	return str(json_var[keys_arr[pos]]).encode("utf-8")
 
+@app.route('/init', methods=['GET'])
+def init():
+	global pos
+	pos = -1
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
