@@ -100,6 +100,10 @@ class MovesFinder:
         return [self.convert_move({'move':bestmove.uci()}), r, status, bestmove.uci()]
 
 class CheckFunc:
+    
+    _nstat = 0
+    _sstat = 1
+    _mstat = 2
 
     def check_castling(self, sboard):
         board = chess.Board(sboard)
@@ -152,3 +156,11 @@ class CheckFunc:
             elif ch == 'p':
                 black = black + 1
         return [white, black]
+
+    def check_state(self, sboard):
+        board = chess.Board(sboard)
+        if board.is_game_over():
+            return self._mstat
+        if board.is_check():
+            return self._sstat
+        return self._nstat
