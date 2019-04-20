@@ -23,7 +23,6 @@ class MovesFinder:
         self._engine.position(board)
         res = list()
         moves = board.legal_moves
-        print(board)
         for move in moves:
             self._engine.go(searchmoves=[move], depth=10)
             scr = self._info_handler.info['score'][1].cp
