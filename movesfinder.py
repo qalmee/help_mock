@@ -37,16 +37,12 @@ class MovesFinder:
         res.sort(key=lambda p:-p['score'])
         reslist = list()
         for el in res:
-            vel = self.convert_move(el)
-            if vel[0] not in reslist:
-                reslist.append(vel[0])
-            if vel[1] not in reslist:
-                reslist.append(vel[1])        
+            reslist.append(self.convert_move(el))     
         return reslist
     
     def how_best_move(self, sboard):
         res = self.get_list_moves(sboard)
-        return [res[0], res[1]]
+        return res[0]
 
 class CheckFunc:
 
