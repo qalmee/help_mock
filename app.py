@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, request, Response
 import jinja2
 import os
-import json 
+import json
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 
 #Read JSON data into the datastore variable
 json_var = json.load(open("mock.json", 'r'))
