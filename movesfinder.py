@@ -68,7 +68,7 @@ class MovesFinder:
                 scrf = round(float(scr)/1000, 2)
             res.append({'move' : move, 'score' : scrf})
         res.sort(key=lambda p:-p['score'])
-        if res.count == 0:
+        if res.__len__() == 0:
             return None
         bestmove = res[0]['move']
         status = self._ustate
