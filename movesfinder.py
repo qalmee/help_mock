@@ -53,7 +53,6 @@ class CheckFunc:
 
     def check_castling(self, sboard):
         board = chess.Board(sboard)
-        print(board)
         notate = sboard.split(' ')[2]
         req1 = {'K':False, 'Q':False}
         for c in notate:
@@ -103,6 +102,3 @@ class CheckFunc:
             elif ch == 'p':
                 black = black + 1
         return [white, black]
-
-F = MovesFinder()
-print(F.how_best_move('r1bqkb1r/ppp2ppp/2n5/3np3/8/P1N2N2/1PPP1PPP/R1BQKB1R w KQkq - 0 6'))
