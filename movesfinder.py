@@ -4,10 +4,10 @@ import chess.uci
 import chess.engine
 
 class MovesFinder:
-    _Cscrf = 5.0
-    _Custate = 0
-    _Cestate = 1
-    _Cmstate = 2
+    _scrf = 5.0
+    _ustate = 0
+    _estate = 1
+    _mstate = 2
 
     def __init__(self):
         self._engine = chess.uci.popen_engine('stockfish.exe')
@@ -32,7 +32,7 @@ class MovesFinder:
             scr = self._info_handler.info['score'][1].cp
             mate = self._info_handler.info['score'][1].mate
             if mate == 1:
-                scrf = self._Cscrf
+                scrf = self._scrf
             elif mate == -1:
                 continue 
             elif scr != None:
@@ -54,7 +54,7 @@ class MovesFinder:
             scr = self._info_handler.info['score'][1].cp
             mate = self._info_handler.info['score'][1].mate
             if mate == 1:
-                scrf = self._Cscrf
+                scrf = self._scrf
             elif mate == -1:
                 continue 
             elif scr != None:
@@ -62,7 +62,7 @@ class MovesFinder:
             res.append({'move' : move, 'score' : scrf})
         res.sort(key=lambda p:-p['score'])
         bestmove = res[0]['move']
-        status = self._Custate
+        status = self._ustate
         r =''
         san = board.san(bestmove)
         for c in ['a','b','c','d','e','f','g','h']:
@@ -70,12 +70,12 @@ class MovesFinder:
                 r = 'P'
         if r != 'P':
             r = san[0]
-        if res[0]['score'] == self._Cscrf:
-            status = self._Cmstate
+        if res[0]['score'] == self._scrf:
+            status = self._mstate
         else:
             for c in san:
                 if c == 'x':
-                    status = self._Cestate
+                    status = self._estate
         return [self.convert_move({'move':bestmove.uci()}), r, status]
 
 class CheckFunc:
