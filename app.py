@@ -40,7 +40,7 @@ def get_help():
 	global keys_arr
 	pos = pos + 1
 	pos = pos % 7
-	return str(json_var[keys_arr[pos]]).encode("utf-8")
+	return json.dumps(json_var[keys_arr[pos]])
 
 @app.route('/init', methods=['GET'])
 def init():
