@@ -7,7 +7,11 @@ class MovesFinder:
     _scrf = 5.0
     _ustate = 0
     _estate = 1
-    _mstate = 2
+    _astate = 2
+    _eastate = 3
+    _mstate = 4
+    _shstate = 5
+    _lnstate = 6
     _depth = 10
 
     def __init__(self):
@@ -64,19 +68,35 @@ class MovesFinder:
         res.sort(key=lambda p:-p['score'])
         bestmove = res[0]['move']
         status = self._ustate
-        r =''
+        r ='RK'
         san = board.san(bestmove)
-        for c in ['a','b','c','d','e','f','g','h']:
-            if san[0] == c:
-                r = 'P'
-        if r != 'P':
-            r = san[0]
-        if res[0]['score'] == self._scrf:
-            status = self._mstate
-        else:
-            for c in san:
-                if c == 'x':
-                    status = self._estate
+        castling = 0
+        for c in san:
+            if c == 'O':
+                castling = castling + 1
+        if castling == 2:
+            status = self._shstate
+        elif castling == 3:
+            status = self._lnstate
+        else:   
+            for c in ['a','b','c','d','e','f','g','h']:
+                if san[0] == c:
+                    r = 'P'
+            if r != 'P':
+                r = san[0]
+            if res[0]['score'] == self._scrf:
+                status = self._mstate
+            else:
+                for c in san:
+                    if c == 'x':
+                        status = self._estate
+                for c in san:
+                    if c == '+':
+                        if status == self._estate:
+                            status = self._eastate
+                        else:
+                            status = self._astate
+            
         return [self.convert_move({'move':bestmove.uci()}), r, status, bestmove.uci()]
 
 class CheckFunc:
