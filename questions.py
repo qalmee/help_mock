@@ -32,3 +32,17 @@ def find_best_match(question):
 #ans = find_best_match(questions, "рокировка")
 #print(questions[ans[0]][ans[1]], ans[2])
 
+@app.route('/get_help_test', methods=['POST'])
+def get_help_test():
+	json = request.get_json()
+	movesfinder = MovesFinder()
+	match = questions.find_best_match(json["question"])
+	possible_moves = []
+	if match[0] == 0:
+		possible_moves = movesfinder.get_list_moves(json["board"])
+	elif match[0] == 1:
+		possible_moves = movesfinder.how_best_move(json["board"])
+	answer = "haha"	
+	print(possible_moves)
+	#json_t = json.
+	return ("123", "234")

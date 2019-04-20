@@ -1,0 +1,40 @@
+{
+    "r1bqkb1r/ppp2ppp/2n2n2/3pp3/4P3/P1N2N2/1PPP1PPP/R1BQKB1R w KQkq d6 0 5": {      
+      "possible_moves": [[4, 3], [3, 4]],
+      "answer": "Я бы предложила съесть пешку на d5"
+    },
+    "r2qkb1r/ppp2ppp/2n5/8/4N1b1/P4N2/1PPPQPPP/R1B2RK1 w kq - 1 10": {      
+      "possible_moves": [
+        [4, 3],[5, 5]
+      ],
+      "answer": "Если сходишь правильно, можешь поставить мат."
+    },
+    "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2": {
+      "possible_moves": [
+        [6,0],[5,2]
+      ],
+      "answer": "Возможное ходы e2-e3, e1-e3, e3-e5"
+    },
+    "r2qkb1r/ppp2ppp/2n2N2/8/6b1/P4N2/1PPPQPPP/R1B2RK1 b kq - 2 10": {
+      "possible_moves": [],
+      "answer": "Шах и мат! Ты победил! Поздравляю!"
+    },
+    "r1bqkb1r/ppp2ppp/2n5/8/4Nn2/P4N2/1PPPBPPP/R1BQK2R w KQkq - 1 8": {
+      "possible_moves": [
+        [7, 0], [5, 0]
+      ],
+      "answer": "Пожалуй стоит сделать рокировку."
+    },
+    "r1bqkb1r/ppp2ppp/2n5/8/4N3/P4N2/1PPPnPPP/R1BQ1RK1 w kq - 0 9": {
+      "possible_moves": [
+        [3, 0], [4, 1]
+      ],
+      "answer": "Кажется вам поставили шах."
+    },
+    "r1bqkb1r/ppp2ppp/2n5/3np3/8/P1N2N2/1PPP1PPP/R1BQKB1R w KQkq - 0 6": {
+      "possible_moves": [
+        [5, 0], [2, 3]
+      ],
+      "answer": "Ты только что спрашивал, в этот раз подумай сам. Ты же хочешь научиться играть."
+    }
+  }
