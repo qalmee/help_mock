@@ -61,11 +61,15 @@ class MovesFinder:
             if mate == 1:
                 scrf = self._scrf
             elif mate == -1:
-                continue 
+                continue
+            elif mate == -2:
+                scr = -5
             elif scr != None:
                 scrf = round(float(scr)/1000, 2)
             res.append({'move' : move, 'score' : scrf})
         res.sort(key=lambda p:-p['score'])
+        if res.count == 0:
+            return None
         bestmove = res[0]['move']
         status = self._ustate
         r ='RK'
