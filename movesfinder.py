@@ -7,9 +7,9 @@ class MovesFinder:
     _scrf = 5.0
     _ustate = 0
     _estate = 1
-    _astate = 2
-    _eastate = 3
-    _mstate = 4
+    _mstate = 2
+    _astate = 3
+    _eastate = 4
     _shstate = 5
     _lnstate = 6
     _depth = 10
