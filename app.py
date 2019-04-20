@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, request, Response, jsonyfy
+from flask import Flask, render_template, request, redirect, request, Response
 import jinja2
 import os
 import json
