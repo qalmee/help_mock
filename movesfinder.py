@@ -11,10 +11,17 @@ class MovesFinder:
         self._info_handler=chess.uci.InfoHandler()
         self._engine.info_handlers.append(self._info_handler)
 
+    def convert_move(self, inp):
+        k0 = ord(inp['move'][0]) - ord('a')
+        k1 = ord(inp['move'][1]) - ord('1')
+        k2 = ord(inp['move'][2]) - ord('a')
+        k3 = ord(inp['move'][3]) - ord('1')
+        return [[k0, k1], [k2, k3]]
+
     def get_list_moves(self, sboard):
         board = chess.Board(sboard)        
         self._engine.position(board)
-        reslist = list()
+        res = list()
         moves = board.legal_moves
         print(board)
         for move in moves:
@@ -27,13 +34,20 @@ class MovesFinder:
                 continue 
             elif scr != None:
                 scrf = round(float(scr)/1000, 2)
-            reslist.append({'move' : move.uci(), 'score' : scrf})
-        reslist.sort(key=lambda p:-p['score'])
+            res.append({'move' : move.uci(), 'score' : scrf})
+        res.sort(key=lambda p:-p['score'])
+        reslist = list()
+        for el in res:
+            vel = self.convert_move(el)
+            if vel[0] not in reslist:
+                reslist.append(vel[0])
+            if vel[1] not in reslist:
+                reslist.append(vel[1])        
         return reslist
     
     def how_best_move(self, sboard):
-        return self.get_list_moves(sboard)[0]
-
+        res = self.get_list_moves(sboard)
+        return [res[0], res[1]]
 
 class CheckFunc:
 
@@ -54,9 +68,9 @@ class CheckFunc:
                 req2['Q'] = True
         reslist = list()
         if req1['K'] and req2['K']:
-             reslist.append('e1a1')
+             reslist.append([[4, 0], [0, 0]])
         if req1['Q'] and req2['Q']:
-             reslist.append('e1h1')
+             reslist.append([[4, 0], [7, 0]])
         return reslist
 
     def get_crit(self, sboard):
@@ -90,3 +104,5 @@ class CheckFunc:
                 black = black + 1
         return [white, black]
 
+F = MovesFinder()
+print(F.how_best_move('r1bqkb1r/ppp2ppp/2n5/3np3/8/P1N2N2/1PPP1PPP/R1BQKB1R w KQkq - 0 6'))
