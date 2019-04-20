@@ -42,6 +42,7 @@ def get_help():
 	pos = pos % 7
 	return json.dumps(json_var[keys_arr[pos]])
 
+
 @app.route('/init', methods=['GET'])
 def init():
 	global pos
