@@ -8,6 +8,7 @@ class MovesFinder:
     _ustate = 0
     _estate = 1
     _mstate = 2
+    _depth = 10
 
     def __init__(self):
         self._engine = chess.uci.popen_engine('stockfish.exe')
@@ -28,7 +29,7 @@ class MovesFinder:
         res = list()
         moves = board.legal_moves
         for move in moves:
-            self._engine.go(searchmoves=[move], depth=10)
+            self._engine.go(searchmoves=[move], depth=self._depth)
             scr = self._info_handler.info['score'][1].cp
             mate = self._info_handler.info['score'][1].mate
             if mate == 1:
@@ -50,7 +51,7 @@ class MovesFinder:
         res = list()
         moves = board.legal_moves
         for move in moves:
-            self._engine.go(searchmoves=[move], depth=10)
+            self._engine.go(searchmoves=[move], depth=self._depth)
             scr = self._info_handler.info['score'][1].cp
             mate = self._info_handler.info['score'][1].mate
             if mate == 1:
@@ -76,7 +77,7 @@ class MovesFinder:
             for c in san:
                 if c == 'x':
                     status = self._estate
-        return [self.convert_move({'move':bestmove.uci()}), r, status]
+        return [self.convert_move({'move':bestmove.uci()}), r, status, bestmove.uci()]
 
 class CheckFunc:
 
