@@ -33,3 +33,60 @@ class MovesFinder:
     
     def how_best_move(self, sboard):
         return self.get_list_moves(sboard)[0]
+
+
+class CheckFunc:
+
+    def check_castling(self, sboard):
+        board = chess.Board(sboard)
+        print(board)
+        notate = sboard.split(' ')[2]
+        req1 = {'K':False, 'Q':False}
+        for c in notate:
+            req1[c]=True
+        if not (req1['K'] or req1['Q']):
+            return None
+        req2 = {'K':False, 'Q':False}
+        for move in board.legal_moves:
+            if 'e1c1'==move.uci():
+                req2['K'] = True
+            elif 'e1g1'==move.uci():
+                req2['Q'] = True
+        reslist = list()
+        if req1['K'] and req2['K']:
+             reslist.append('e1a1')
+        if req1['Q'] and req2['Q']:
+             reslist.append('e1h1')
+        return reslist
+
+    def get_crit(self, sboard):
+        figures = sboard.split(' ')[0]
+        white = 0.0
+        black = 0.0
+        for ch in figures:
+            if ch == 'R':
+                white = white + 5
+            elif ch == 'r':
+                black = black + 5
+            elif ch == 'N':
+                white = white + 3
+            elif ch == 'n':
+                black = black + 3
+            elif ch == 'B':
+                white = white + 3.5
+            elif ch == 'b':
+                black = black + 3.5
+            elif ch == 'Q':
+                white = white + 10
+            elif ch == 'q':
+                black = black + 10
+            elif ch == 'K':
+                white = white + 4
+            elif ch == 'k':
+                black = black + 4
+            elif ch == 'P':
+                white = white + 1
+            elif ch == 'p':
+                black = black + 1
+        return [white, black]
+
