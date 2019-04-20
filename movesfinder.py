@@ -104,6 +104,7 @@ class CheckFunc:
     _nstat = 0
     _sstat = 1
     _mstat = 2
+    _pstat = 3
 
     def check_castling(self, sboard):
         board = chess.Board(sboard)
@@ -159,8 +160,15 @@ class CheckFunc:
 
     def check_state(self, sboard):
         board = chess.Board(sboard)
+        if board.legal_moves.count == 0:
+            return self._pstat
         if board.is_game_over():
             return self._mstat
         if board.is_check():
             return self._sstat
         return self._nstat
+    
+    def upd_fen(self, sboard, sturn):
+        board = chess.Board(sboard)
+        board.push(chess.Move.from_uci(sturn))
+        return board.fen()
